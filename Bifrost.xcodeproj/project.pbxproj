@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE37F537F28EAA0E0B57A5EC /* Pods_Bifrost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */; };
+		BDDBCD4DAB718A9C5E994CF5 /* Pods_BifrostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63837FDD9CF83978A3F44A00 /* Pods_BifrostTests.framework */; };
 		E6000D462232D175008591A2 /* Bifrost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6000D3C2232D175008591A2 /* Bifrost.framework */; };
 		E6000D4B2232D175008591A2 /* BifrostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D4A2232D175008591A2 /* BifrostTests.swift */; };
 		E6000D4D2232D175008591A2 /* Bifrost.h in Headers */ = {isa = PBXBuildFile; fileRef = E6000D3F2232D175008591A2 /* Bifrost.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D572232D1D1008591A2 /* JWTSignUPService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +26,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47111AEA891F27097DC07A7A /* Pods-Bifrost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bifrost.release.xcconfig"; path = "Target Support Files/Pods-Bifrost/Pods-Bifrost.release.xcconfig"; sourceTree = "<group>"; };
+		63837FDD9CF83978A3F44A00 /* Pods_BifrostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BifrostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FE2DFC640C3425E0505FAAF /* Pods-Bifrost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bifrost.debug.xcconfig"; path = "Target Support Files/Pods-Bifrost/Pods-Bifrost.debug.xcconfig"; sourceTree = "<group>"; };
+		A5D22382178057CC9523163E /* Pods-BifrostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BifrostTests.debug.xcconfig"; path = "Target Support Files/Pods-BifrostTests/Pods-BifrostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6000D3C2232D175008591A2 /* Bifrost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bifrost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6000D3F2232D175008591A2 /* Bifrost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bifrost.h; sourceTree = "<group>"; };
 		E6000D402232D175008591A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6000D452232D175008591A2 /* BifrostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BifrostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6000D4A2232D175008591A2 /* BifrostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BifrostTests.swift; sourceTree = "<group>"; };
 		E6000D4C2232D175008591A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6000D572232D1D1008591A2 /* JWTSignUPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTSignUPService.swift; sourceTree = "<group>"; };
+		F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BifrostTests.release.xcconfig"; path = "Target Support Files/Pods-BifrostTests/Pods-BifrostTests.release.xcconfig"; sourceTree = "<group>"; };
+		FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bifrost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE37F537F28EAA0E0B57A5EC /* Pods_Bifrost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +55,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6000D462232D175008591A2 /* Bifrost.framework in Frameworks */,
+				BDDBCD4DAB718A9C5E994CF5 /* Pods_BifrostTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6557F860C425E4E0544D8011 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */,
+				63837FDD9CF83978A3F44A00 /* Pods_BifrostTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABD3D9E12A3305B5E14B2166 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FE2DFC640C3425E0505FAAF /* Pods-Bifrost.debug.xcconfig */,
+				47111AEA891F27097DC07A7A /* Pods-Bifrost.release.xcconfig */,
+				A5D22382178057CC9523163E /* Pods-BifrostTests.debug.xcconfig */,
+				F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E6000D322232D175008591A2 = {
 			isa = PBXGroup;
 			children = (
 				E6000D3E2232D175008591A2 /* Bifrost */,
 				E6000D492232D175008591A2 /* BifrostTests */,
 				E6000D3D2232D175008591A2 /* Products */,
+				ABD3D9E12A3305B5E14B2166 /* Pods */,
+				6557F860C425E4E0544D8011 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +106,7 @@
 		E6000D3E2232D175008591A2 /* Bifrost */ = {
 			isa = PBXGroup;
 			children = (
+				E6000D562232D17E008591A2 /* JWTAuthentication */,
 				E6000D3F2232D175008591A2 /* Bifrost.h */,
 				E6000D402232D175008591A2 /* Info.plist */,
 			);
@@ -84,6 +120,14 @@
 				E6000D4C2232D175008591A2 /* Info.plist */,
 			);
 			path = BifrostTests;
+			sourceTree = "<group>";
+		};
+		E6000D562232D17E008591A2 /* JWTAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				E6000D572232D1D1008591A2 /* JWTSignUPService.swift */,
+			);
+			path = JWTAuthentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6000D502232D175008591A2 /* Build configuration list for PBXNativeTarget "Bifrost" */;
 			buildPhases = (
+				2BBE9EDA918D1672DF3BD069 /* [CP] Check Pods Manifest.lock */,
 				E6000D372232D175008591A2 /* Headers */,
 				E6000D382232D175008591A2 /* Sources */,
 				E6000D392232D175008591A2 /* Frameworks */,
@@ -122,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6000D532232D175008591A2 /* Build configuration list for PBXNativeTarget "BifrostTests" */;
 			buildPhases = (
+				2A0B3210F065DF2CAE7EBCE5 /* [CP] Check Pods Manifest.lock */,
 				E6000D412232D175008591A2 /* Sources */,
 				E6000D422232D175008591A2 /* Frameworks */,
 				E6000D432232D175008591A2 /* Resources */,
+				5249CF3249882875D97CC72C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -148,6 +195,7 @@
 				TargetAttributes = {
 					E6000D3B2232D175008591A2 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					E6000D442232D175008591A2 = {
 						CreatedOnToolsVersion = 10.1;
@@ -189,11 +237,87 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A0B3210F065DF2CAE7EBCE5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BifrostTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BBE9EDA918D1672DF3BD069 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bifrost-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5249CF3249882875D97CC72C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BifrostTests/Pods-BifrostTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BifrostTests/Pods-BifrostTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E6000D382232D175008591A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +464,9 @@
 		};
 		E6000D512232D175008591A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FE2DFC640C3425E0505FAAF /* Pods-Bifrost.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.neneds.Bifrost;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,7 +492,9 @@
 		};
 		E6000D522232D175008591A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47111AEA891F27097DC07A7A /* Pods-Bifrost.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -390,7 +519,9 @@
 		};
 		E6000D542232D175008591A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5D22382178057CC9523163E /* Pods-BifrostTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P45ZSSC9ZG;
 				INFOPLIST_FILE = BifrostTests/Info.plist;
@@ -408,7 +539,9 @@
 		};
 		E6000D552232D175008591A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P45ZSSC9ZG;
 				INFOPLIST_FILE = BifrostTests/Info.plist;
