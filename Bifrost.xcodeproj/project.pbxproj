@@ -13,6 +13,9 @@
 		E6000D4B2232D175008591A2 /* BifrostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D4A2232D175008591A2 /* BifrostTests.swift */; };
 		E6000D4D2232D175008591A2 /* Bifrost.h in Headers */ = {isa = PBXBuildFile; fileRef = E6000D3F2232D175008591A2 /* Bifrost.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D572232D1D1008591A2 /* JWTSignUPService.swift */; };
+		E60634132232F0A000CFDD47 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634122232F0A000CFDD47 /* CustomError.swift */; };
+		E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634162232F10900CFDD47 /* Bundle+Extensions.swift */; };
+		E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634192232F17F00CFDD47 /* BaseLocalizable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,9 @@
 		E6000D4A2232D175008591A2 /* BifrostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BifrostTests.swift; sourceTree = "<group>"; };
 		E6000D4C2232D175008591A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6000D572232D1D1008591A2 /* JWTSignUPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTSignUPService.swift; sourceTree = "<group>"; };
+		E60634122232F0A000CFDD47 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		E60634162232F10900CFDD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		E60634192232F17F00CFDD47 /* BaseLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLocalizable.swift; sourceTree = "<group>"; };
 		F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BifrostTests.release.xcconfig"; path = "Target Support Files/Pods-BifrostTests/Pods-BifrostTests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bifrost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,7 +85,6 @@
 				A5D22382178057CC9523163E /* Pods-BifrostTests.debug.xcconfig */,
 				F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -106,7 +111,9 @@
 		E6000D3E2232D175008591A2 /* Bifrost */ = {
 			isa = PBXGroup;
 			children = (
-				E6000D562232D17E008591A2 /* JWTAuthentication */,
+				E60634182232F17100CFDD47 /* Base Classes */,
+				E60634112232F08200CFDD47 /* Helpers */,
+				E6000D562232D17E008591A2 /* JWTSignUp */,
 				E6000D3F2232D175008591A2 /* Bifrost.h */,
 				E6000D402232D175008591A2 /* Info.plist */,
 			);
@@ -122,12 +129,45 @@
 			path = BifrostTests;
 			sourceTree = "<group>";
 		};
-		E6000D562232D17E008591A2 /* JWTAuthentication */ = {
+		E6000D562232D17E008591A2 /* JWTSignUp */ = {
 			isa = PBXGroup;
 			children = (
 				E6000D572232D1D1008591A2 /* JWTSignUPService.swift */,
 			);
-			path = JWTAuthentication;
+			path = JWTSignUp;
+			sourceTree = "<group>";
+		};
+		E60634112232F08200CFDD47 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E60634142232F0D900CFDD47 /* Extensions */,
+				E60634152232F0E500CFDD47 /* Error */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E60634142232F0D900CFDD47 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E60634162232F10900CFDD47 /* Bundle+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E60634152232F0E500CFDD47 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				E60634122232F0A000CFDD47 /* CustomError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		E60634182232F17100CFDD47 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E60634192232F17F00CFDD47 /* BaseLocalizable.swift */,
+			);
+			path = "Base Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,7 +357,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */,
+				E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */,
 				E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */,
+				E60634132232F0A000CFDD47 /* CustomError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
