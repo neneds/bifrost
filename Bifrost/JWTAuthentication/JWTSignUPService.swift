@@ -9,9 +9,11 @@
 import Foundation
 import Moya
 
+typealias SignUpCompletion = (_ jsonResponse: [String: Any]?, _ error: Error?) -> Void
+
 protocol SignUPServiceType {
-    func signUp()
-    func forgotPassword()
+    func signUp(_ target: TargetType, completion: SignUpCompletion)
+    func forgotPassword(_ target: TargetType)
 }
 
 class JWTSignUPService<T: TargetType>: SignUPServiceType {
@@ -22,12 +24,12 @@ class JWTSignUPService<T: TargetType>: SignUPServiceType {
         self.provider = provider
     }
     
-    func signUp() {
-        <#code#>
+    func signUp(_ target: TargetType, completion: ([String : Any]?, Error?) -> Void) {
+   
     }
     
-    func forgotPassword() {
-        <#code#>
+    func forgotPassword(_ target: TargetType) {
+        
     }
     
 }
