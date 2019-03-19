@@ -12,7 +12,7 @@
 		E6000D462232D175008591A2 /* Bifrost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6000D3C2232D175008591A2 /* Bifrost.framework */; };
 		E6000D4B2232D175008591A2 /* BifrostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D4A2232D175008591A2 /* BifrostTests.swift */; };
 		E6000D4D2232D175008591A2 /* Bifrost.h in Headers */ = {isa = PBXBuildFile; fileRef = E6000D3F2232D175008591A2 /* Bifrost.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D572232D1D1008591A2 /* JWTSignUPService.swift */; };
+		E6000D582232D1D1008591A2 /* UserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6000D572232D1D1008591A2 /* UserAuthService.swift */; };
 		E60634132232F0A000CFDD47 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634122232F0A000CFDD47 /* CustomError.swift */; };
 		E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634162232F10900CFDD47 /* Bundle+Extensions.swift */; };
 		E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634192232F17F00CFDD47 /* BaseLocalizable.swift */; };
@@ -39,7 +39,7 @@
 		E6000D452232D175008591A2 /* BifrostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BifrostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6000D4A2232D175008591A2 /* BifrostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BifrostTests.swift; sourceTree = "<group>"; };
 		E6000D4C2232D175008591A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6000D572232D1D1008591A2 /* JWTSignUPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTSignUPService.swift; sourceTree = "<group>"; };
+		E6000D572232D1D1008591A2 /* UserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthService.swift; sourceTree = "<group>"; };
 		E60634122232F0A000CFDD47 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		E60634162232F10900CFDD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E60634192232F17F00CFDD47 /* BaseLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLocalizable.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 			children = (
 				E60634182232F17100CFDD47 /* Base Classes */,
 				E60634112232F08200CFDD47 /* Helpers */,
-				E6000D562232D17E008591A2 /* JWTSignUp */,
+				E6000D562232D17E008591A2 /* UserAuthService */,
 				E6000D3F2232D175008591A2 /* Bifrost.h */,
 				E6000D402232D175008591A2 /* Info.plist */,
 			);
@@ -129,12 +129,12 @@
 			path = BifrostTests;
 			sourceTree = "<group>";
 		};
-		E6000D562232D17E008591A2 /* JWTSignUp */ = {
+		E6000D562232D17E008591A2 /* UserAuthService */ = {
 			isa = PBXGroup;
 			children = (
-				E6000D572232D1D1008591A2 /* JWTSignUPService.swift */,
+				E6000D572232D1D1008591A2 /* UserAuthService.swift */,
 			);
-			path = JWTSignUp;
+			path = UserAuthService;
 			sourceTree = "<group>";
 		};
 		E60634112232F08200CFDD47 /* Helpers */ = {
@@ -359,7 +359,7 @@
 			files = (
 				E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */,
 				E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */,
-				E6000D582232D1D1008591A2 /* JWTSignUPService.swift in Sources */,
+				E6000D582232D1D1008591A2 /* UserAuthService.swift in Sources */,
 				E60634132232F0A000CFDD47 /* CustomError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
