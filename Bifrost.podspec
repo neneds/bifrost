@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
     The iOS framework provides an way to handle authentication logic. 
   DESC
-  s.homepage     = "https://bitbucket.org/altran-ais/"
+  s.homepage     = "https://github.com/neneds/bifrost"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Dennis Merli" => "dennis.merli1@gmail.com" }
   s.social_media_url   = ""
@@ -21,6 +21,4 @@ Pod::Spec.new do |s|
   s.ios.source_files  = "Bifrost/**/*.{h,m,swift}"
   s.ios.frameworks  = "Foundation" 
   s.dependency  'Moya',       '~> 12.0' 
-  s.dependency  'RxSwift',    '~> 4.0'
-  s.dependency  'RxCocoa',    '~> 4.0'
 end
