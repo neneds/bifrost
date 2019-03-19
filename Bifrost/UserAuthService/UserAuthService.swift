@@ -12,10 +12,10 @@ import Moya
 typealias ResponseCompletion = (_ responseObject: Any?, _ error: Error?) -> Void
 typealias DecodingParameters<T: Decodable> = (decoder: JSONDecoder, type: T.Type)
 
-protocol SignUPServiceType {
-    func signIn<T>(target: MultiTarget, decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
-    func signUp<T>(target: MultiTarget, decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
-    func forgotPassword<T>(target: MultiTarget, decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
+protocol SignUpServiceType {
+    func signIn<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
+    func signUp<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
+    func forgotPassword<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
 }
 
 struct BaseTarget: TargetType {
@@ -39,6 +39,16 @@ struct BaseTarget: TargetType {
 class UserAuthService {
     
     let provider = MoyaProvider<MultiTarget>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var signUpTarget: MultiTarget?
+    var signInTarget: MultiTarget?
+    var forgotPassTarget: MultiTarget?
+    
+    
+    init(signUpTarget: MultiTarget?, signInTarget: MultiTarget?, forgotPasswordTarget: MultiTarget?) {
+        self.signInTarget = signInTarget
+        self.signUpTarget = signUpTarget
+        self.forgotPassTarget = forgotPasswordTarget
+    }
     
     fileprivate func request<T>(target: MultiTarget,decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion) {
         provider.request(target) { (result) in
@@ -88,18 +98,29 @@ class UserAuthService {
     }
 }
 
-extension UserAuthService: SignUPServiceType {
-    func signIn<T>(target: MultiTarget, decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
-        return request(target: target, decodingParameters: decodingParameters, completion: completion)
+extension UserAuthService: SignUpServiceType {
+    func signIn<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+        guard let signInTarget = signInTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "SignInTarget"))
+            return
+        }
+        return request(target: signInTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func signUp<T>(target: MultiTarget, decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
-        return request(target: target, decodingParameters: decodingParameters, completion: completion)
+    func signUp<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+        guard let signUPTarget = signUpTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "SignUpTarget"))
+            return
+        }
+        return request(target: signUPTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func forgotPassword<T>(target: MultiTarget, decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
-        return request(target: target, decodingParameters: decodingParameters, completion: completion)
+    func forgotPassword<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+        guard let forgotPassTarget = forgotPassTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "ForgotPassTarget"))
+            return
+        }
+        return request(target: forgotPassTarget, decodingParameters: decodingParameters, completion: completion)
     }
 }
-
 
