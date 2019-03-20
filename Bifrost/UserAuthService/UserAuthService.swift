@@ -13,9 +13,12 @@ typealias ResponseCompletion = (_ responseObject: Any?, _ error: Error?) -> Void
 typealias DecodingParameters<T: Decodable> = (decoder: JSONDecoder, type: T.Type)
 
 protocol SignUpServiceType {
-    func signIn<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
-    func signUp<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
-    func forgotPassword<T>(decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion)
+    func signIn<T>(decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion)
+    func signUp<T>(decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion)
+    func forgotPassword<T>(decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion)
+    func signIn(completion: @escaping ResponseCompletion)
+    func signUp(completion: @escaping ResponseCompletion)
+    func forgotPassword(completion: @escaping ResponseCompletion)
 }
 
 struct BaseTarget: TargetType {
@@ -39,28 +42,40 @@ struct BaseTarget: TargetType {
 class UserAuthService {
     
     let provider = MoyaProvider<MultiTarget>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    var signUpTarget: MultiTarget?
-    var signInTarget: MultiTarget?
-    var forgotPassTarget: MultiTarget?
+    var signUpTarget: BaseTarget?
+    var signInTarget: BaseTarget?
+    var forgotPassTarget: BaseTarget?
     
-    
-    init(signUpTarget: MultiTarget?, signInTarget: MultiTarget?, forgotPasswordTarget: MultiTarget?) {
+    init(signUpTarget: BaseTarget?, signInTarget: BaseTarget?, forgotPasswordTarget: BaseTarget?) {
         self.signInTarget = signInTarget
         self.signUpTarget = signUpTarget
         self.forgotPassTarget = forgotPasswordTarget
     }
     
-    fileprivate func request<T>(target: MultiTarget,decodingParameters: DecodingParameters<T>?, completion: @escaping ResponseCompletion) {
-        provider.request(target) { (result) in
+    fileprivate func request<T>(target: BaseTarget,decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion) {
+        provider.request(MultiTarget(target)) { (result) in
             switch result {
             case let .success(moyaResponse):
                 do {
                     _ = try moyaResponse.filterSuccessfulStatusCodes()
-                    if decodingParameters != nil {
-                        self.decodeObjectFromMoya(decodingParameters: decodingParameters, response: moyaResponse, completion: completion)
-                    } else {
-                        self.decodeJSONFromMoya(response: moyaResponse, completion: completion)
-                    }
+                    self.decodeObjectFromMoya(decodingParameters: decodingParameters, response: moyaResponse, completion: completion)
+                } catch {
+                    completion(nil, CustomError.errorFromResponse(with: moyaResponse))
+                }
+                
+            case let .failure(error):
+                completion(nil, CustomError.errorFromMoya(with: error))
+            }
+        }
+    }
+    
+    fileprivate func request(target: BaseTarget, completion: @escaping ResponseCompletion) {
+        provider.request(MultiTarget(target)) { (result) in
+            switch result {
+            case let .success(moyaResponse):
+                do {
+                    _ = try moyaResponse.filterSuccessfulStatusCodes()
+                    self.decodeJSONFromMoya(response: moyaResponse, completion: completion)
                 } catch {
                     completion(nil, CustomError.errorFromResponse(with: moyaResponse))
                 }
@@ -99,7 +114,7 @@ class UserAuthService {
 }
 
 extension UserAuthService: SignUpServiceType {
-    func signIn<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+    func signIn<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
         guard let signInTarget = signInTarget else {
             completion(nil, CustomError.nilParameter(parameter: "SignInTarget"))
             return
@@ -107,7 +122,7 @@ extension UserAuthService: SignUpServiceType {
         return request(target: signInTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func signUp<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+    func signUp<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
         guard let signUPTarget = signUpTarget else {
             completion(nil, CustomError.nilParameter(parameter: "SignUpTarget"))
             return
@@ -115,12 +130,37 @@ extension UserAuthService: SignUpServiceType {
         return request(target: signUPTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func forgotPassword<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type)?, completion: @escaping ResponseCompletion) where T : Decodable {
+    func forgotPassword<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
         guard let forgotPassTarget = forgotPassTarget else {
             completion(nil, CustomError.nilParameter(parameter: "ForgotPassTarget"))
             return
         }
         return request(target: forgotPassTarget, decodingParameters: decodingParameters, completion: completion)
     }
+    
+    func signIn(completion: @escaping ResponseCompletion) {
+        guard let signInTarget = signInTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "SignInTarget"))
+            return
+        }
+        return request(target: signInTarget, completion: completion)
+    }
+    
+    func signUp(completion: @escaping ResponseCompletion) {
+        guard let signUPTarget = signUpTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "SignUpTarget"))
+            return
+        }
+        return request(target: signUPTarget, completion: completion)
+    }
+    
+    func forgotPassword(completion: @escaping ResponseCompletion) {
+        guard let forgotPassTarget = forgotPassTarget else {
+            completion(nil, CustomError.nilParameter(parameter: "ForgotPassTarget"))
+            return
+        }
+        return request(target: forgotPassTarget, completion: completion)
+    }
 }
+
 
