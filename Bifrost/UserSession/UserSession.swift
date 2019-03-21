@@ -22,14 +22,15 @@ struct User {
 
 protocol UserSessionType {
     var isUserLoggedIn: Bool { get }
-    func signIn()
-    func logOut()
+    func loadSession() throws
+    func saveSession(token: AccessToken) throws
+    func logOut() throws
 }
 
 class UserSession: UserSessionType {
-
     private(set) var keychainService: KeychainService
     private(set) var accessTokenService: AccessTokenService
+    private(set) var currentAccessToken: AccessToken?
     
     init(keychainService: KeychainService, accessTokenService: AccessTokenService) {
         self.keychainService = keychainService
@@ -37,15 +38,19 @@ class UserSession: UserSessionType {
     }
     
     var isUserLoggedIn: Bool {
-        return false
+        return currentAccessToken != nil
     }
     
-    func logOut() {
-        try? accessTokenService.deleteAccessToken()
+    func logOut() throws {
+        try accessTokenService.deleteAccessToken()
     }
     
-    func signIn() {
-        
+    func loadSession() throws {
+        currentAccessToken = try accessTokenService.loadAccessToken()
     }
     
+    func saveSession(token: AccessToken) throws {
+        try accessTokenService.saveAccessToken(token)
+        currentAccessToken = token
+    }
 }

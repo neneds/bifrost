@@ -17,21 +17,18 @@ final class AccessTokenService {
     
     func saveAccessToken(_ accessToken: AccessToken) throws {
         try self.keychainService.set(accessToken.accessToken, key: "access_token")
-        try self.keychainService.set(accessToken.tokenType, key: "token_type")
-        try self.keychainService.set(accessToken.scope, key: "scope")
+        try self.keychainService.set(accessToken.tokenType.rawValue, key: "token_type")
     }
     
     func loadAccessToken() throws -> AccessToken?  {
         guard let accessToken = try self.keychainService.get("access_token"),
-            let tokenType = try self.keychainService.get("token_type"),
-            let scope = try self.keychainService.get("scope")
+            let tokenType = try self.keychainService.get("token_type")
             else { return nil }
-        return AccessToken(accessToken: accessToken, tokenType: tokenType, scope: scope, refreshToken: "")
+        return AccessToken(tokenType: TokenType(rawValue: tokenType) ?? .other, accessToken: accessToken, scope: nil, refreshToken: "")
     }
     
     func deleteAccessToken() throws {
         try self.keychainService.remove("access_token")
         try self.keychainService.remove("token_type")
-        try self.keychainService.remove("scope")
     }
 }

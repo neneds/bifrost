@@ -6,8 +6,6 @@
 //  Copyright © 2019 Dennis Merli. All rights reserved.
 //
 
-import Foundation
-
 struct ClientCredentials {
     var clientID: String
     var clientSecret: String
