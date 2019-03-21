@@ -15,23 +15,37 @@ enum AuthProvider {
     case none
 }
 
-struct Token {
-    
-}
-
 struct User {
     var authProvider: AuthProvider
-    var token: Token
-    var refreshToken: String
+    var token: AccessToken
 }
-
 
 protocol UserSessionType {
     var isUserLoggedIn: Bool { get }
-    func clearSessionCredentials()
-    
+    func signIn()
+    func logOut()
 }
 
-class UserSession {
+class UserSession: UserSessionType {
+
+    private(set) var keychainService: KeychainService
+    private(set) var accessTokenService: AccessTokenService
+    
+    init(keychainService: KeychainService, accessTokenService: AccessTokenService) {
+        self.keychainService = keychainService
+        self.accessTokenService = accessTokenService
+    }
+    
+    var isUserLoggedIn: Bool {
+        return false
+    }
+    
+    func logOut() {
+        try? accessTokenService.deleteAccessToken()
+    }
+    
+    func signIn() {
+        
+    }
     
 }

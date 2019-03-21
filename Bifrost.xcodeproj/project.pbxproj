@@ -16,6 +16,12 @@
 		E60634132232F0A000CFDD47 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634122232F0A000CFDD47 /* CustomError.swift */; };
 		E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634162232F10900CFDD47 /* Bundle+Extensions.swift */; };
 		E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60634192232F17F00CFDD47 /* BaseLocalizable.swift */; };
+		E632D3F62243C76000B43C97 /* OauthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D3F52243C76000B43C97 /* OauthService.swift */; };
+		E632D3F92243CFDA00B43C97 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D3F82243CFDA00B43C97 /* KeychainService.swift */; };
+		E632D3FC2243D06E00B43C97 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D3FB2243D06E00B43C97 /* AccessToken.swift */; };
+		E632D3FF2243D09500B43C97 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D3FE2243D09500B43C97 /* ModelType.swift */; };
+		E632D4022243D0C200B43C97 /* ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D4012243D0C200B43C97 /* ClientCredentials.swift */; };
+		E632D4052243D0E600B43C97 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D4042243D0E600B43C97 /* AccessTokenService.swift */; };
 		E6EC7535224278D200F5EE59 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EC7534224278D200F5EE59 /* UserSession.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +50,12 @@
 		E60634122232F0A000CFDD47 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		E60634162232F10900CFDD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E60634192232F17F00CFDD47 /* BaseLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLocalizable.swift; sourceTree = "<group>"; };
+		E632D3F52243C76000B43C97 /* OauthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OauthService.swift; sourceTree = "<group>"; };
+		E632D3F82243CFDA00B43C97 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		E632D3FB2243D06E00B43C97 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		E632D3FE2243D09500B43C97 /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
+		E632D4012243D0C200B43C97 /* ClientCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCredentials.swift; sourceTree = "<group>"; };
+		E632D4042243D0E600B43C97 /* AccessTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
 		E6EC7534224278D200F5EE59 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BifrostTests.release.xcconfig"; path = "Target Support Files/Pods-BifrostTests/Pods-BifrostTests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bifrost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +125,9 @@
 		E6000D3E2232D175008591A2 /* Bifrost */ = {
 			isa = PBXGroup;
 			children = (
+				E632D3FD2243D08B00B43C97 /* TypeProtocols */,
+				E632D3FA2243D06200B43C97 /* Models */,
+				E632D3F72243CFC800B43C97 /* Services */,
 				E6EC7533224278B900F5EE59 /* UserSession */,
 				E60634182232F17100CFDD47 /* Base Classes */,
 				E60634112232F08200CFDD47 /* Helpers */,
@@ -136,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				E6000D572232D1D1008591A2 /* UserAuthService.swift */,
+				E632D3F52243C76000B43C97 /* OauthService.swift */,
 			);
 			path = UserAuthService;
 			sourceTree = "<group>";
@@ -171,6 +187,32 @@
 				E60634192232F17F00CFDD47 /* BaseLocalizable.swift */,
 			);
 			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		E632D3F72243CFC800B43C97 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E632D3F82243CFDA00B43C97 /* KeychainService.swift */,
+				E632D4042243D0E600B43C97 /* AccessTokenService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E632D3FA2243D06200B43C97 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E632D3FB2243D06E00B43C97 /* AccessToken.swift */,
+				E632D4012243D0C200B43C97 /* ClientCredentials.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E632D3FD2243D08B00B43C97 /* TypeProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				E632D3FE2243D09500B43C97 /* ModelType.swift */,
+			);
+			path = TypeProtocols;
 			sourceTree = "<group>";
 		};
 		E6EC7533224278B900F5EE59 /* UserSession */ = {
@@ -222,7 +264,6 @@
 				E6000D412232D175008591A2 /* Sources */,
 				E6000D422232D175008591A2 /* Frameworks */,
 				E6000D432232D175008591A2 /* Resources */,
-				5249CF3249882875D97CC72C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,34 +374,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5249CF3249882875D97CC72C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BifrostTests/Pods-BifrostTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BifrostTests/Pods-BifrostTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -369,9 +382,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E60634172232F10900CFDD47 /* Bundle+Extensions.swift in Sources */,
+				E632D3FF2243D09500B43C97 /* ModelType.swift in Sources */,
 				E6EC7535224278D200F5EE59 /* UserSession.swift in Sources */,
+				E632D3FC2243D06E00B43C97 /* AccessToken.swift in Sources */,
 				E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */,
+				E632D4022243D0C200B43C97 /* ClientCredentials.swift in Sources */,
+				E632D3F62243C76000B43C97 /* OauthService.swift in Sources */,
+				E632D4052243D0E600B43C97 /* AccessTokenService.swift in Sources */,
 				E6000D582232D1D1008591A2 /* UserAuthService.swift in Sources */,
+				E632D3F92243CFDA00B43C97 /* KeychainService.swift in Sources */,
 				E60634132232F0A000CFDD47 /* CustomError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
