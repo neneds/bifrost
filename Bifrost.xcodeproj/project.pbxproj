@@ -127,15 +127,7 @@
 		E6000D3E2232D175008591A2 /* Bifrost */ = {
 			isa = PBXGroup;
 			children = (
-				E632D3FD2243D08B00B43C97 /* TypeProtocols */,
-				E632D3FA2243D06200B43C97 /* Models */,
-				E632D3F72243CFC800B43C97 /* Services */,
-				E6EC7533224278B900F5EE59 /* UserSession */,
-				E60634182232F17100CFDD47 /* Base Classes */,
-				E60634112232F08200CFDD47 /* Helpers */,
-				E6000D562232D17E008591A2 /* UserAuthService */,
-				E6000D3F2232D175008591A2 /* Bifrost.h */,
-				E6000D402232D175008591A2 /* Info.plist */,
+				E61A3B8E2245179300167388 /* Sources */,
 			);
 			path = Bifrost;
 			sourceTree = "<group>";
@@ -190,6 +182,30 @@
 				E60634192232F17F00CFDD47 /* BaseLocalizable.swift */,
 			);
 			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		E61A3B8E2245179300167388 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E61A3B8F22451A6100167388 /* Resources */,
+				E632D3FD2243D08B00B43C97 /* TypeProtocols */,
+				E632D3FA2243D06200B43C97 /* Models */,
+				E632D3F72243CFC800B43C97 /* Services */,
+				E6EC7533224278B900F5EE59 /* UserSession */,
+				E60634182232F17100CFDD47 /* Base Classes */,
+				E60634112232F08200CFDD47 /* Helpers */,
+				E6000D562232D17E008591A2 /* UserAuthService */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E61A3B8F22451A6100167388 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E6000D3F2232D175008591A2 /* Bifrost.h */,
+				E6000D402232D175008591A2 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E632D3F72243CFC800B43C97 /* Services */ = {
