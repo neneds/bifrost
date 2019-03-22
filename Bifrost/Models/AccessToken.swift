@@ -6,13 +6,13 @@
 //  Copyright © 2019 Dennis Merli. All rights reserved.
 //
 
-enum TokenType: String, ModelType {
+public enum TokenType: String, ModelType {
     case jwt
     case oauth
     case other
 }
 
-struct AccessToken: ModelType {
+public struct AccessToken: ModelType {
     var accessToken: String
     var tokenType: TokenType
     var refreshToken: String?

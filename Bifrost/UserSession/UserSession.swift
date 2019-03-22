@@ -8,26 +8,26 @@
 
 import Foundation
 
-enum AuthProvider {
+public enum AuthProvider {
     case basic
     case oauth
     case social
     case none
 }
 
-struct User {
+public struct User {
     var authProvider: AuthProvider
     var token: AccessToken
 }
 
-protocol UserSessionType {
+public protocol UserSessionType {
     var isUserLoggedIn: Bool { get }
     func loadSession() throws
     func saveSession(token: AccessToken) throws
     func logOut() throws
 }
 
-class UserSession: UserSessionType {
+public class UserSession: UserSessionType {
     private(set) var keychainService: KeychainService
     private(set) var accessTokenService: AccessTokenService
     private(set) var currentAccessToken: AccessToken?
@@ -37,19 +37,19 @@ class UserSession: UserSessionType {
         self.accessTokenService = accessTokenService
     }
     
-    var isUserLoggedIn: Bool {
+    public var isUserLoggedIn: Bool {
         return currentAccessToken != nil
     }
     
-    func logOut() throws {
+    public func logOut() throws {
         try accessTokenService.deleteAccessToken()
     }
     
-    func loadSession() throws {
+    public func loadSession() throws {
         currentAccessToken = try accessTokenService.loadAccessToken()
     }
     
-    func saveSession(token: AccessToken) throws {
+    public func saveSession(token: AccessToken) throws {
         try accessTokenService.saveAccessToken(token)
         currentAccessToken = token
     }

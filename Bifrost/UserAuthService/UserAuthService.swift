@@ -21,13 +21,13 @@ protocol SignUpServiceType {
     func forgotPassword(completion: @escaping ResponseCompletion)
 }
 
-struct BaseTarget: TargetType {
-    var baseURL: URL
-    var path: String
-    var method: Moya.Method
-    var sampleData: Data
-    var task: Task
-    var headers: [String : String]?
+public struct BaseTarget: TargetType {
+    public var baseURL: URL
+    public var path: String
+    public var method: Moya.Method
+    public var sampleData: Data
+    public var task: Task
+    public var headers: [String : String]?
     
     init(url: URL, path: String, method: Moya.Method, sampleData: Data?, task: Task, headers: [String : String]?) {
         self.baseURL = url
@@ -39,7 +39,7 @@ struct BaseTarget: TargetType {
     }
 }
 
-class UserAuthService {
+public class UserAuthService {
     
     let provider = MoyaProvider<MultiTarget>(plugins: [NetworkLoggerPlugin(verbose: true)])
     var signUpTarget: BaseTarget?

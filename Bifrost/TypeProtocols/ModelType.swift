@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ModelType: Codable {
+public protocol ModelType: Codable {
     
 }

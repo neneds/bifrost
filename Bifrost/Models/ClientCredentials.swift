@@ -7,7 +7,7 @@
 //
 
 
-protocol ClientCredentialsType {
+public protocol ClientCredentialsType {
     var clientID: String { get set }
     var clientSecret: String { get set }
     var accessCodeURLComponents: URLComponents? { get set }
@@ -16,18 +16,18 @@ protocol ClientCredentialsType {
     mutating func tokenRequestURL(code: String) throws -> URL?
 }
 
-struct ClientCredentials: ClientCredentialsType {
-    var clientID: String
+public struct ClientCredentials: ClientCredentialsType {
+    public var clientID: String
     
-    var clientSecret: String
+    public var clientSecret: String
     
-    var accessCodeURLComponents: URLComponents?
+    public var accessCodeURLComponents: URLComponents?
     
-    var accessCodeURL: URL?
+    public var accessCodeURL: URL?
     
-    var tokenRequestURLComponents: URLComponents?
+    public var tokenRequestURLComponents: URLComponents?
     
-    mutating func tokenRequestURL(code: String) throws -> URL? {
+    mutating public func tokenRequestURL(code: String) throws -> URL? {
         tokenRequestURLComponents?.queryItems?.append(URLQueryItem(name: "code", value: code))
         return try tokenRequestURLComponents?.asURL()
     }
@@ -35,13 +35,13 @@ struct ClientCredentials: ClientCredentialsType {
 
 // Reference: https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
 
-struct FacebookClientCredentials: ClientCredentialsType {
-    var tokenRequestURLComponents: URLComponents?
-    var accessCodeURLComponents: URLComponents?
+public struct FacebookClientCredentials: ClientCredentialsType {
+    public var tokenRequestURLComponents: URLComponents?
+    public var accessCodeURLComponents: URLComponents?
     var graphAPIVersion: String = "v3.2"
-    var clientID: String
-    var clientSecret: String
-    var accessCodeURL: URL? {
+    public var clientID: String
+    public var clientSecret: String
+    public var accessCodeURL: URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "www.facebook.com"
@@ -56,7 +56,7 @@ struct FacebookClientCredentials: ClientCredentialsType {
         return try? urlComponents.asURL()
     }
     
-    func tokenRequestURL(code: String) throws -> URL? {
+    public func tokenRequestURL(code: String) throws -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "graph.facebook.com"
@@ -68,10 +68,6 @@ struct FacebookClientCredentials: ClientCredentialsType {
             URLQueryItem(name: "code", value: code)
         ]
         return try urlComponents.asURL()
-    }
-    
-    var tokenRequestParameters: [String : Any] {
-        return ["client_id": clientID, "redirect_uri" : redirectURI, "state" : state, "response_type" : "code"]
     }
     
     var redirectURI: String

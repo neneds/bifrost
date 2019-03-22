@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AccessTokenService {
+public final class AccessTokenService {
     private var keychainService: KeychainService
     
     init(keychainService: KeychainService) {

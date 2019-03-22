@@ -11,12 +11,12 @@ import URLNavigator
 import Alamofire
 import RxSwift
 
-protocol OauthServiceType {
+public protocol OauthServiceType {
     func authorize(url: URL) -> Observable<AccessToken>
     func callback(code: String)
 }
 
-final class OauthService: OauthServiceType {
+public final class OauthService: OauthServiceType {
     
     fileprivate var clientCredentials: ClientCredentialsType
     
@@ -30,7 +30,7 @@ final class OauthService: OauthServiceType {
         self.navigator = navigator
     }
     
-    func authorize(url: URL) -> Observable<AccessToken> {
+    public func authorize(url: URL) -> Observable<AccessToken> {
         let safariViewController = SFSafariViewController(url: url)
         let navigationController = UINavigationController(rootViewController: safariViewController)
         navigationController.isNavigationBarHidden = true
@@ -41,7 +41,7 @@ final class OauthService: OauthServiceType {
             .flatMap(self.accessToken)
     }
     
-    func callback(code: String) {
+    public func callback(code: String) {
         self.callbackSubject.onNext(code)
         self.currentViewController?.dismiss(animated: true, completion: nil)
         self.currentViewController = nil

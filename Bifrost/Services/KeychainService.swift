@@ -18,7 +18,7 @@ protocol KeychainServiceType {
     func contains(_ key: String) throws -> Bool
 }
 
-final class KeychainService: KeychainServiceType {
+public final class KeychainService: KeychainServiceType {
     var keychain: Keychain
     
     init(accessGroup: String) {
