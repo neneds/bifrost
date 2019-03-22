@@ -7,63 +7,55 @@
 //
 
 import SafariServices
-import URLNavigator
 import Alamofire
 import RxSwift
+import UIKit
 
 public protocol OauthServiceType {
     func authorize(url: URL) -> Observable<AccessToken>
-    func callback(code: String)
-    func canOpen(_ url: URL) -> Bool
+    func handleURL(_ url: URL) -> Bool
 }
 
 public final class OauthService: OauthServiceType {
-    
     fileprivate var clientCredentials: ClientCredentialsType
-    
     fileprivate var currentViewController: UIViewController?
     fileprivate let callbackSubject = PublishSubject<String>()
+    fileprivate var currentWindow: UIWindow?
     
-    private let navigator: NavigatorType
-    
-    public init(navigator: NavigatorType, clientCredentials: ClientCredentialsType) {
+    public init(currentWindow: UIWindow, clientCredentials: ClientCredentialsType) {
+        self.currentWindow = currentWindow
         self.clientCredentials = clientCredentials
-        self.navigator = navigator
-    }
-    
-    private func setupNavigator() {
-        navigator.handle(clientCredentials.callbackURL.absoluteString) { url, values, context in
-            guard let code = url.queryParameters["code"] else { return false }
-            self.callback(code: code)
-            return true
-        }
     }
     
     public func authorize(url: URL) -> Observable<AccessToken> {
         let safariViewController = SFSafariViewController(url: url)
         let navigationController = UINavigationController(rootViewController: safariViewController)
         navigationController.isNavigationBarHidden = true
-        self.navigator.present(navigationController)
+        if let window = currentWindow {
+            window.rootViewController?.present(navigationController, animated: true, completion: nil)
+        }
         self.currentViewController = navigationController
         
         return self.callbackSubject
             .flatMap(self.accessToken)
     }
     
-    public func callback(code: String) {
+    public func handleURL(_ url: URL) -> Bool {
+        let equalScheme = url.scheme == clientCredentials.callbackURL.scheme
+        let equalHost = url.host == clientCredentials.callbackURL.host
+        if equalScheme && equalHost {
+            guard let code = url.queryParameter("code") else { return false } 
+            self.callback(code: code)
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func callback(code: String) {
         self.callbackSubject.onNext(code)
         self.currentViewController?.dismiss(animated: true, completion: nil)
         self.currentViewController = nil
-    }
-    
-    public func canOpen(_ url: URL) -> Bool {
-        if navigator.open(url) {
-            return true
-        }
-        if navigator.present(url, wrap: UINavigationController.self) != nil {
-            return true
-        }
-        return false
     }
     
     fileprivate func accessToken(code: String) -> Single<AccessToken> {
@@ -98,7 +90,5 @@ public final class OauthService: OauthServiceType {
             }
         }
     }
-    
-    
 }
 

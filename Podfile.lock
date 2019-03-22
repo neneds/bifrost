@@ -12,14 +12,12 @@ PODS:
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.4.2):
     - RxAtomic (>= 4.4.2, ~> 4.4)
-  - URLNavigator (2.1.0)
 
 DEPENDENCIES:
   - KeychainAccess
   - Moya (~> 12.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
-  - URLNavigator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -30,7 +28,6 @@ SPEC REPOS:
     - RxAtomic
     - RxCocoa
     - RxSwift
-    - URLNavigator
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -40,8 +37,7 @@ SPEC CHECKSUMS:
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
-  URLNavigator: e8cea3835b3456d7876eb728831e742273c8d209
 
-PODFILE CHECKSUM: 27ed8c705297422464f92e6b5253cccb52bb0a3f
+PODFILE CHECKSUM: ed7e63d970c4f48f7e0c25e2ba84d288c2de3e50
 
 COCOAPODS: 1.6.1

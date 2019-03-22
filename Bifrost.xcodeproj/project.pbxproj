@@ -23,6 +23,7 @@
 		E632D4022243D0C200B43C97 /* ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D4012243D0C200B43C97 /* ClientCredentials.swift */; };
 		E632D4052243D0E600B43C97 /* AccessTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D4042243D0E600B43C97 /* AccessTokenService.swift */; };
 		E632D40B22441AFE00B43C97 /* JWTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E632D40A22441AFE00B43C97 /* JWTParser.swift */; };
+		E6635665224576A60056DC1E /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6635664224576A60056DC1E /* URL+Extensions.swift */; };
 		E6EC7535224278D200F5EE59 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EC7534224278D200F5EE59 /* UserSession.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		E632D4012243D0C200B43C97 /* ClientCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCredentials.swift; sourceTree = "<group>"; };
 		E632D4042243D0E600B43C97 /* AccessTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenService.swift; sourceTree = "<group>"; };
 		E632D40A22441AFE00B43C97 /* JWTParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTParser.swift; sourceTree = "<group>"; };
+		E6635664224576A60056DC1E /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E6EC7534224278D200F5EE59 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		F536CA0C5042BB9667785715 /* Pods-BifrostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BifrostTests.release.xcconfig"; path = "Target Support Files/Pods-BifrostTests/Pods-BifrostTests.release.xcconfig"; sourceTree = "<group>"; };
 		FF7325E279DA0394BC4043B3 /* Pods_Bifrost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bifrost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				E60634162232F10900CFDD47 /* Bundle+Extensions.swift */,
+				E6635664224576A60056DC1E /* URL+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				E632D3FF2243D09500B43C97 /* ModelType.swift in Sources */,
 				E6EC7535224278D200F5EE59 /* UserSession.swift in Sources */,
 				E632D3FC2243D06E00B43C97 /* AccessToken.swift in Sources */,
+				E6635665224576A60056DC1E /* URL+Extensions.swift in Sources */,
 				E632D40B22441AFE00B43C97 /* JWTParser.swift in Sources */,
 				E606341A2232F17F00CFDD47 /* BaseLocalizable.swift in Sources */,
 				E632D4022243D0C200B43C97 /* ClientCredentials.swift in Sources */,

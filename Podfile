@@ -9,7 +9,6 @@ target 'Bifrost' do
   pod 'RxCocoa',    '~> 4.0'
   pod 'Moya', '~> 12.0'
   pod 'KeychainAccess'
-  pod 'URLNavigator'
 
   target 'BifrostTests' do
     inherit! :search_paths

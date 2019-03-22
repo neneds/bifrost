@@ -24,5 +24,4 @@ Pod::Spec.new do |s|
   s.dependency  'RxSwift',    '~> 4.0'
   s.dependency  'RxCocoa',    '~> 4.0'
   s.dependency  'KeychainAccess'
-  s.dependency  'URLNavigator'
 end
