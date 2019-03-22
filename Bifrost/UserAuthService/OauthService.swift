@@ -18,8 +18,8 @@ protocol OauthServiceType {
 
 final class OauthService: OauthServiceType {
     
-    fileprivate var clientCredentials: ClientCredentials
-
+    fileprivate var clientCredentials: ClientCredentialsType
+    
     fileprivate var currentViewController: UIViewController?
     fileprivate let callbackSubject = PublishSubject<String>()
     
@@ -36,7 +36,7 @@ final class OauthService: OauthServiceType {
         navigationController.isNavigationBarHidden = true
         self.navigator.present(navigationController)
         self.currentViewController = navigationController
-
+        
         return self.callbackSubject
             .flatMap(self.accessToken)
     }
@@ -49,24 +49,33 @@ final class OauthService: OauthServiceType {
     
     fileprivate func accessToken(code: String) -> Single<AccessToken> {
         return Single.create { observer in
-            let request = Alamofire
-                .request(self.clientCredentials.accessTokenURL.absoluteString, method: .post, parameters: self.clientCredentials.parameters)
-                .responseData { response in
-                    switch response.result {
-                    case let .success(jsonData):
-                        do {
-                            let accessToken = try JSONDecoder().decode(AccessToken.self, from: jsonData)
-                            observer(.success(accessToken))
-                        } catch let error {
+            do {
+                guard let requestURL = try self.clientCredentials.tokenRequestURL(code: code) else {
+                    observer(.error(CustomError.nilParameter(parameter: "Token request URL")))
+                    return Disposables.create()
+                }
+                let request = Alamofire
+                    .request(requestURL)
+                    .responseData { response in
+                        switch response.result {
+                        case let .success(jsonData):
+                            do {
+                                let accessToken = try JSONDecoder().decode(AccessToken.self, from: jsonData)
+                                observer(.success(accessToken))
+                            } catch let error {
+                                observer(.error(error))
+                            }
+                            
+                        case let .failure(error):
                             observer(.error(error))
                         }
-                        
-                    case let .failure(error):
-                        observer(.error(error))
-                    }
-            }
-            return Disposables.create {
-                request.cancel()
+                }
+                return Disposables.create {
+                    request.cancel()
+                }
+            } catch {
+                observer(.error(error))
+                return Disposables.create()
             }
         }
     }

@@ -10,28 +10,37 @@
 protocol ClientCredentialsType {
     var clientID: String { get set }
     var clientSecret: String { get set }
+    var accessCodeURLComponents: URLComponents? { get set }
     var accessCodeURL: URL? { get }
-    func tokenRequestURL(code: String) throws -> URL?
+    var tokenRequestURLComponents: URLComponents? { get set }
+    mutating func tokenRequestURL(code: String) throws -> URL?
 }
 
-struct ClientCredentials {
+struct ClientCredentials: ClientCredentialsType {
     var clientID: String
+    
     var clientSecret: String
-    var accessTokenURL: URL
-    var tokenRequestURL: URL
-    var parameters: [String: Any]
+    
+    var accessCodeURLComponents: URLComponents?
+    
+    var accessCodeURL: URL?
+    
+    var tokenRequestURLComponents: URLComponents?
+    
+    mutating func tokenRequestURL(code: String) throws -> URL? {
+        tokenRequestURLComponents?.queryItems?.append(URLQueryItem(name: "code", value: code))
+        return try tokenRequestURLComponents?.asURL()
+    }
 }
 
 // Reference: https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
 
 struct FacebookClientCredentials: ClientCredentialsType {
-
-    
+    var tokenRequestURLComponents: URLComponents?
+    var accessCodeURLComponents: URLComponents?
     var graphAPIVersion: String = "v3.2"
     var clientID: String
-    
     var clientSecret: String
-    
     var accessCodeURL: URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -58,7 +67,6 @@ struct FacebookClientCredentials: ClientCredentialsType {
             URLQueryItem(name: "client_secret", value: clientSecret),
             URLQueryItem(name: "code", value: code)
         ]
-        
         return try urlComponents.asURL()
     }
     
