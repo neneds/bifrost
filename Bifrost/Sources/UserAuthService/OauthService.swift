@@ -25,7 +25,7 @@ public final class OauthService: OauthServiceType {
     
     private let navigator: NavigatorType
     
-    init(navigator: NavigatorType, clientCredentials: ClientCredentials) {
+    public init(navigator: NavigatorType, clientCredentials: ClientCredentialsType) {
         self.clientCredentials = clientCredentials
         self.navigator = navigator
     }

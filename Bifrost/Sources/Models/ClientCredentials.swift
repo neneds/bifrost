@@ -38,7 +38,7 @@ public struct ClientCredentials: ClientCredentialsType {
 public struct FacebookClientCredentials: ClientCredentialsType {
     public var tokenRequestURLComponents: URLComponents?
     public var accessCodeURLComponents: URLComponents?
-    var graphAPIVersion: String = "v3.2"
+    public var graphAPIVersion: String = "v3.2"
     public var clientID: String
     public var clientSecret: String
     public var accessCodeURL: URL? {
@@ -74,4 +74,11 @@ public struct FacebookClientCredentials: ClientCredentialsType {
     
     var state: String
     
+    public init(graphAPIVersion: String, clientID: String, clientSecret: String, redirectURI: String, state: String) {
+        self.graphAPIVersion = graphAPIVersion
+        self.clientID = clientID
+        self.clientSecret = clientSecret
+        self.redirectURI = redirectURI
+        self.state = state
+    }
 }
