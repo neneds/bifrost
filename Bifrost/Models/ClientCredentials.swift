@@ -5,50 +5,62 @@
 //  Created by Dennis Merli on 21/03/19.
 //  Copyright © 2019 Dennis Merli. All rights reserved.
 //
+
+
 protocol ClientCredentialsType {
     var clientID: String { get set }
     var clientSecret: String { get set }
-    var baseAccessCodeURL: URL { get set }
-    var fullAccessCodeURL: URL { get }
-    var baseTokenRequestURL: URL { get set }
-    var tokenRequestParameters: [String: Any] { get }
+    var accessCodeURL: URL? { get }
+    func tokenRequestURL(code: String) throws -> URL?
 }
 
 struct ClientCredentials {
     var clientID: String
     var clientSecret: String
     var accessTokenURL: URL
+    var tokenRequestURL: URL
     var parameters: [String: Any]
 }
 
-//Request access
-
-//https://www.facebook.com/v3.2/dialog/oauth?
-//client_id={app-id}
-//&redirect_uri={redirect-uri}
-//&state={state-param}
-
-//https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
-
-//Request token
-
-//GET https://graph.facebook.com/v3.2/oauth/access_token?
-//client_id={app-id}
-//&redirect_uri={redirect-uri}
-//&client_secret={app-secret}
-//&code={code-parameter}
-
+// Reference: https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
 
 struct FacebookClientCredentials: ClientCredentialsType {
+
+    
+    var graphAPIVersion: String = "v3.2"
     var clientID: String
     
     var clientSecret: String
     
-    var baseAccessCodeURL: URL = URL(string: "https://www.facebook.com/v3.2/dialog/oauth")!
+    var accessCodeURL: URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "www.facebook.com"
+        urlComponents.path = "/\(graphAPIVersion)/dialog/oauth"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: clientID),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "state", value: state),
+            URLQueryItem(name: "response_type", value: "code")
+        ]
+        
+        return try? urlComponents.asURL()
+    }
     
-    var fullAccessCodeURL: URL 
-    
-    var baseTokenRequestURL: URL
+    func tokenRequestURL(code: String) throws -> URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "graph.facebook.com"
+        urlComponents.path = "/\(graphAPIVersion)/dialog/oauth/access_token"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: clientID),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "client_secret", value: clientSecret),
+            URLQueryItem(name: "code", value: code)
+        ]
+        
+        return try urlComponents.asURL()
+    }
     
     var tokenRequestParameters: [String : Any] {
         return ["client_id": clientID, "redirect_uri" : redirectURI, "state" : state, "response_type" : "code"]
