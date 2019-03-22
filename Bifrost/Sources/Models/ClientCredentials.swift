@@ -14,6 +14,7 @@ public protocol ClientCredentialsType {
     var accessCodeURL: URL? { get }
     var tokenRequestURLComponents: URLComponents? { get set }
     mutating func tokenRequestURL(code: String) throws -> URL?
+    var callbackURL: URL { get set }
 }
 
 public struct ClientCredentials: ClientCredentialsType {
@@ -31,6 +32,8 @@ public struct ClientCredentials: ClientCredentialsType {
         tokenRequestURLComponents?.queryItems?.append(URLQueryItem(name: "code", value: code))
         return try tokenRequestURLComponents?.asURL()
     }
+    
+    public var callbackURL: URL
 }
 
 // Reference: https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
@@ -48,7 +51,7 @@ public struct FacebookClientCredentials: ClientCredentialsType {
         urlComponents.path = "/\(graphAPIVersion)/dialog/oauth"
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: clientID),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "redirect_uri", value: callbackURL.absoluteString),
             URLQueryItem(name: "state", value: state),
             URLQueryItem(name: "response_type", value: "code")
         ]
@@ -63,22 +66,22 @@ public struct FacebookClientCredentials: ClientCredentialsType {
         urlComponents.path = "/\(graphAPIVersion)/dialog/oauth/access_token"
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: clientID),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "redirect_uri", value: callbackURL.absoluteString),
             URLQueryItem(name: "client_secret", value: clientSecret),
             URLQueryItem(name: "code", value: code)
         ]
         return try urlComponents.asURL()
     }
     
-    var redirectURI: String
+    public var callbackURL: URL
     
     var state: String
     
-    public init(graphAPIVersion: String, clientID: String, clientSecret: String, redirectURI: String, state: String) {
+    public init(graphAPIVersion: String, clientID: String, clientSecret: String, callbackURL: URL, state: String) {
         self.graphAPIVersion = graphAPIVersion
         self.clientID = clientID
         self.clientSecret = clientSecret
-        self.redirectURI = redirectURI
+        self.callbackURL = callbackURL
         self.state = state
     }
 }

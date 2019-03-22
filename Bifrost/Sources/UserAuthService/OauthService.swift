@@ -14,6 +14,7 @@ import RxSwift
 public protocol OauthServiceType {
     func authorize(url: URL) -> Observable<AccessToken>
     func callback(code: String)
+    func canOpen(_ url: URL) -> Bool
 }
 
 public final class OauthService: OauthServiceType {
@@ -28,6 +29,14 @@ public final class OauthService: OauthServiceType {
     public init(navigator: NavigatorType, clientCredentials: ClientCredentialsType) {
         self.clientCredentials = clientCredentials
         self.navigator = navigator
+    }
+    
+    private func setupNavigator() {
+        navigator.handle(clientCredentials.callbackURL.absoluteString) { url, values, context in
+            guard let code = url.queryParameters["code"] else { return false }
+            self.callback(code: code)
+            return true
+        }
     }
     
     public func authorize(url: URL) -> Observable<AccessToken> {
@@ -45,6 +54,16 @@ public final class OauthService: OauthServiceType {
         self.callbackSubject.onNext(code)
         self.currentViewController?.dismiss(animated: true, completion: nil)
         self.currentViewController = nil
+    }
+    
+    public func canOpen(_ url: URL) -> Bool {
+        if navigator.open(url) {
+            return true
+        }
+        if navigator.present(url, wrap: UINavigationController.self) != nil {
+            return true
+        }
+        return false
     }
     
     fileprivate func accessToken(code: String) -> Single<AccessToken> {
@@ -79,5 +98,7 @@ public final class OauthService: OauthServiceType {
             }
         }
     }
+    
+    
 }
 
