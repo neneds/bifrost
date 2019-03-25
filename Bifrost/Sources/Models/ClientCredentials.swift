@@ -6,7 +6,6 @@
 //  Copyright © 2019 Dennis Merli. All rights reserved.
 //
 
-
 public protocol ClientCredentialsType {
     var clientID: String { get set }
     var clientSecret: String { get set }

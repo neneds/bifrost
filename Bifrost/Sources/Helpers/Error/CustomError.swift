@@ -38,8 +38,6 @@ class CustomError {
     }
 }
 
-
-
 extension CustomError {
     class func errorFromResponse(with moyaResponse: Response) -> NSError {
         do {

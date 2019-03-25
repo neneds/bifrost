@@ -27,9 +27,9 @@ public struct BaseTarget: TargetType {
     public var method: Moya.Method
     public var sampleData: Data
     public var task: Task
-    public var headers: [String : String]?
+    public var headers: [String: String]?
     
-    init(url: URL, path: String, method: Moya.Method, sampleData: Data?, task: Task, headers: [String : String]?) {
+    init(url: URL, path: String, method: Moya.Method, sampleData: Data?, task: Task, headers: [String: String]?) {
         self.baseURL = url
         self.path = path
         self.method = method
@@ -52,7 +52,7 @@ public class UserAuthService {
         self.forgotPassTarget = forgotPasswordTarget
     }
     
-    fileprivate func request<T>(target: BaseTarget,decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion) {
+    fileprivate func request<T>(target: BaseTarget, decodingParameters: DecodingParameters<T>, completion: @escaping ResponseCompletion) {
         provider.request(MultiTarget(target)) { (result) in
             switch result {
             case let .success(moyaResponse):
@@ -102,19 +102,19 @@ public class UserAuthService {
     
     private func decodeJSONFromMoya(response: Moya.Response, completion: @escaping ResponseCompletion) {
         do {
-            if let jsonResponse: [String : Any] = try response.mapJSON() as? [String: Any] {
+            if let jsonResponse: [String: Any] = try response.mapJSON() as? [String: Any] {
                 completion(jsonResponse, nil)
             } else {
                 completion(nil, CustomError.cannotParse())
             }
         } catch {
-            completion(nil,  CustomError.errorFromResponse(with: response))
+            completion(nil, CustomError.errorFromResponse(with: response))
         }
     }
 }
 
 extension UserAuthService: SignUpServiceType {
-    func signIn<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
+    func signIn<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T: Decodable {
         guard let signInTarget = signInTarget else {
             completion(nil, CustomError.nilParameter(parameter: "SignInTarget"))
             return
@@ -122,7 +122,7 @@ extension UserAuthService: SignUpServiceType {
         return request(target: signInTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func signUp<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
+    func signUp<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T: Decodable {
         guard let signUPTarget = signUpTarget else {
             completion(nil, CustomError.nilParameter(parameter: "SignUpTarget"))
             return
@@ -130,7 +130,7 @@ extension UserAuthService: SignUpServiceType {
         return request(target: signUPTarget, decodingParameters: decodingParameters, completion: completion)
     }
     
-    func forgotPassword<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T : Decodable {
+    func forgotPassword<T>(decodingParameters: (decoder: JSONDecoder, type: T.Type), completion: @escaping ResponseCompletion) where T: Decodable {
         guard let forgotPassTarget = forgotPassTarget else {
             completion(nil, CustomError.nilParameter(parameter: "ForgotPassTarget"))
             return
@@ -162,5 +162,4 @@ extension UserAuthService: SignUpServiceType {
         return request(target: forgotPassTarget, completion: completion)
     }
 }
-
 

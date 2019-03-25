@@ -20,7 +20,7 @@ public final class AccessTokenService {
         try self.keychainService.set(accessToken.tokenType.rawValue, key: "token_type")
     }
     
-    func loadAccessToken() throws -> AccessToken?  {
+    func loadAccessToken() throws -> AccessToken? {
         guard let accessToken = try self.keychainService.get("access_token"),
             let tokenType = try self.keychainService.get("token_type")
             else { return nil }
